@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "athens",
+  "version": "${version}",
+  "name": "Athens",
+  "description": "Athens Client",
+  "authors": [
+    "MandoGamin"
+  ],
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.lipama.athens.AthensClient"
+    ]
+  },
+  "mixins": [
+    "athens.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.7",
+    "fabric": "*",
+    "java": ">=17",
+    "minecraft": ">=${mc_version}"
+  },
+  "conflicts": {
+    "optifabric": "*"
+  }
+}
