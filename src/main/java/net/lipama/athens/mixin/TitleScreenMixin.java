@@ -37,7 +37,7 @@ public class TitleScreenMixin extends Screen {
     @Inject(method = "render", at = @At("TAIL"))
     private void onRender(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if(mouseX <=50 && mouseY <= 10){
-            AthensClient.MC.textRenderer.drawWithShadow(matrices,"by: MandoGamin",3,3, AthensClient.COLOR.getPacked());
+            AthensClient.MC.textRenderer.drawWithShadow(matrices,"https://discord.gg/rQC3DqQqn3",3,3, AthensClient.COLOR.getPacked());
         } else {
             AthensClient.MC.textRenderer.drawWithShadow(matrices,AthensClient.MOD_NAME,3,3, AthensClient.COLOR.getPacked());
         }
