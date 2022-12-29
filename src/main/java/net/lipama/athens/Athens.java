@@ -19,7 +19,6 @@ public class Athens {
         } else {
             LOG.info("Welcome back, user");
         }
-        LOG.info("HUD: " + useHud);
     }
 
     public static void init() {
