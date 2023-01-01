@@ -5,7 +5,8 @@
   "name": "Athens",
   "description": "Athens Client",
   "authors": [
-    "MandoGamin"
+    "MandoGamin",
+    "AtomicGamer9523"
   ],
   "icon": "icon.png",
   "environment": "*",
