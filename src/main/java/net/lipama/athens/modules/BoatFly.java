@@ -9,7 +9,6 @@ public class BoatFly extends Module {
     public BoatFly() {
         super("BoatFly");
         this.height = 5;
-        this.hudHeight = 25;
     }
     @Override
     public void onEnable() {

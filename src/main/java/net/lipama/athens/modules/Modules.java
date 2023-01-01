@@ -12,6 +12,7 @@ public class Modules<M extends Module> {
         add(new FullBright());
         add(new AutoFish());
         add(new BoatFly());
+        add(new Flight());
 
         init();
     }
@@ -46,8 +47,11 @@ public class Modules<M extends Module> {
     }
     @SuppressWarnings("unchecked")
     private void init() {
+        int drawInt = 5;
         for(IModule<M> module : MODULES) {
+            module.module.hudHeight = drawInt;
             AthensClient.HUD.add(module.module);
+            drawInt += 10;
         }
     }
     public void tick() {

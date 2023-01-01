@@ -7,8 +7,7 @@ public class FullBright extends Module {
 
     public FullBright() {
         super("FullBright");
-        this.height = -20;
-        this.hudHeight = 15;
+        this.height = 55;
     }
     @Override
     public void onEnable() {
