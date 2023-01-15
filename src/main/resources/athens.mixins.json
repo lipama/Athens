@@ -3,10 +3,12 @@
   "package": "net.lipama.athens.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "AbstractBlockStateMixin",
     "FishingBobberEntityMixin",
     "GameMenuScreenMixin",
     "GameRendererMixin",
     "InGameHudMixin",
+    "MinecraftClientMixin",
     "MouseMixin",
     "PlayerInventoryMixin",
     "SimpleOptionMixin",

@@ -1,8 +1,9 @@
-package net.lipama.athens.baritone;
+package net.lipama.athens.baritone.internal;
 
 import baritone.api.*;
 
 public class Baritone {
+    public static boolean BARITONE_LOADED = false;
     private final IBaritoneProvider provider;
     private final Settings settings;
     public Baritone() {

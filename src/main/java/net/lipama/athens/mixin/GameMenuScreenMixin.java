@@ -17,11 +17,9 @@ public abstract class GameMenuScreenMixin extends Screen {
 
     @Inject(at = @At("HEAD"), method = "initWidgets")
     private void initWidgets(CallbackInfo _cb) {
-        ButtonWidget.Builder button = new ButtonWidget.Builder(Text.of("Athens"), (btn) -> {
-            this.client.setScreen(
-                new AthensOptionsScreen(this, this.client.options)
-            );
-        });
+        ButtonWidget.Builder button = new ButtonWidget.Builder(Text.of("Athens"), (btn) -> this.client.setScreen(
+            new AthensOptionsScreen(this, this.client.options)
+        ));
         button.dimensions(10,10,90,20);
         this.addDrawableChild(button.build());
     }

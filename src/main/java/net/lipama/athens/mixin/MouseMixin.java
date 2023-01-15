@@ -11,8 +11,6 @@ import net.minecraft.client.Mouse;
 @Mixin(Mouse.class)
 @SuppressWarnings("unused")
 public class MouseMixin {
-    @Inject(at = {@At("RETURN")}, method = {"onMouseScroll(JDD)V"})
-    private void onOnMouseScroll(long long_1, double double_1, double double_2, CallbackInfo ci) {
-        Zoom.onMouseScroll(double_2);
-    }
+    @Inject(at = @At("RETURN"), method = "onMouseScroll(JDD)V")
+    private void onOnMouseScroll(long window, double horizontal, double vertical, CallbackInfo ci) { Zoom.onMouseScroll(vertical); }
 }

@@ -3,15 +3,13 @@ package net.lipama.athens.screens;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
-import net.lipama.athens.utils.KeyBinds;
-import net.lipama.athens.AthensClient;
+import net.lipama.athens.Athens;
 
 import java.util.ArrayList;
 
-@SuppressWarnings({"FieldCanBeLocal", "unchecked", "unused"})
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class AthensOptionsScreen extends Screen {
     public static int WIDTH;
     public static int HEIGHT;
@@ -26,18 +24,13 @@ public class AthensOptionsScreen extends Screen {
         AthensOptionsScreen.HEIGHT = this.height;
     }
 
+    @SuppressWarnings("unchecked")
     protected void init() {
         AthensOptionsScreen.WIDTH = this.width;
         AthensOptionsScreen.HEIGHT = this.height;
-        ArrayList<ButtonWidget> widgets = AthensClient.MODULES.buildButtonWidgets();
+        ArrayList<ButtonWidget> widgets = Athens.MODULES.buildButtonWidgets();
         for(ButtonWidget widget : widgets) {
             this.addDrawableChild(widget);
-        }
-    }
-
-    public static void handle(MinecraftClient client) {
-        while(KeyBinds.screenKey.wasPressed()) {
-            client.setScreenAndRender(new AthensOptionsScreen(client.currentScreen,client.options));
         }
     }
 }

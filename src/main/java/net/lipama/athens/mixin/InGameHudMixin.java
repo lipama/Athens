@@ -7,25 +7,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.gui.hud.InGameHud;
 
-import net.lipama.athens.modules.FullBright;
-import net.lipama.athens.*;
+import net.lipama.athens.screens.AthensHudOverlay;
 
 @Mixin(InGameHud.class)
 @SuppressWarnings("unused")
 public class InGameHudMixin {
     @Inject(method = "render", at = @At("RETURN"))
-    public void changeGamma(MatrixStack _matrices, float _tickDelta, CallbackInfo _ci) {
-        if(FullBright.active) {
-            AthensClient.MC.options.getGamma().setValue(69420.0);
-        } else {
-            AthensClient.MC.options.getGamma().setValue(1.0);
-        }
-    }
+    public void changeGamma(MatrixStack _matrices, float _tickDelta, CallbackInfo _ci) { AthensHudOverlay.gamma(); }
 
     @Inject(method = "render", at = @At("RETURN"), cancellable = true)
-    public void onRender(MatrixStack matrices, float tickDelta, CallbackInfo info) {
-        if(Athens.useHud) {
-            AthensClient.HUD.renderHudElements(matrices, tickDelta, info);
-        }
-    }
+    public void onRender(MatrixStack matrices, float tickDelta, CallbackInfo info) { AthensHudOverlay.render(matrices, tickDelta, info); }
 }

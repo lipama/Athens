@@ -12,15 +12,12 @@ public class FullBright extends Module {
     @Override
     public void onEnable() {
         AthensClient.LOG.info("FullBright Enabled");
+        FullBright.active = true;
     }
 
     @Override
     public void onDisable() {
         AthensClient.LOG.info("FullBright Disabled");
-    }
-
-    @Override
-    public void onTick() {
-        FullBright.active = this.enabled;
+        FullBright.active = false;
     }
 }

@@ -1,5 +1,6 @@
 package net.lipama.athens.utils;
 
+import net.lipama.athens.Athens;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.util.math.MatrixStack;
@@ -23,6 +24,10 @@ public class HudUtils<R extends HudUtils.Renderable> {
         for(R item : QUEUE) {
             item.render(AthensClient.MC,matrices,tickDelta,info);
         }
+        QUEUE.clear();
+    }
+    public void tick() {
+        Athens.MODULES.tick();
     }
 
     public interface Renderable {

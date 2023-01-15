@@ -18,9 +18,11 @@
   "mixins": [
     "athens.mixins.json"
   ],
+  "custom": {
+    "athens_metadata": "net.lipama"
+  },
   "depends": {
     "fabricloader": ">=0.14.7",
-    "fabric": "*",
     "java": ">=17",
     "minecraft": ">=${mc_version}"
   },

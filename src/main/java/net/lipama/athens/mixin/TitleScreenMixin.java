@@ -8,7 +8,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.text.Text;
 
-import net.lipama.athens.AthensClient;
+import net.lipama.athens.*;
 
 @Mixin(TitleScreen.class)
 @SuppressWarnings({"unused", "SpellCheckingInspection"})
@@ -29,7 +29,7 @@ public class TitleScreenMixin extends Screen {
     )
     private void onFullLoad(MatrixStack _matrices, int _mouseX, int _mouseY, float _delta, CallbackInfo _info) {
         if(firstTimeTitleScreen) {
-            AthensClient.init();
+            Athens.postInit();
             firstTimeTitleScreen = false;
         }
     }
@@ -37,9 +37,9 @@ public class TitleScreenMixin extends Screen {
     @Inject(method = "render", at = @At("TAIL"))
     private void onRender(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if(mouseX <=50 && mouseY <= 10){
-            AthensClient.MC.textRenderer.drawWithShadow(matrices,"https://discord.gg/rQC3DqQqn3",3,3, AthensClient.COLOR.getPacked());
+            AthensClient.MC.textRenderer.drawWithShadow(matrices,"https://discord.gg/rQC3DqQqn3",3,3, Athens.COLOR.getPacked());
         } else {
-            AthensClient.MC.textRenderer.drawWithShadow(matrices,AthensClient.MOD_NAME,3,3, AthensClient.COLOR.getPacked());
+            AthensClient.MC.textRenderer.drawWithShadow(matrices,AthensClient.MOD_NAME,3,3, Athens.COLOR.getPacked());
         }
     }
 }

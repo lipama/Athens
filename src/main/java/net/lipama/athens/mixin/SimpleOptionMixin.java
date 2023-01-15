@@ -14,11 +14,7 @@ import java.util.Optional;
 @SuppressWarnings({"unused", "SpellCheckingInspection"})
 public class SimpleOptionMixin {
     @Inject(method = "validate(Ljava/lang/Double;)Ljava/util/Optional;", at = @At("RETURN"), cancellable = true)
-    public void removeValidation(Double double_, CallbackInfoReturnable<Optional<Double>> cir) {
-        if(FullBright.active) {
-            if(double_ == 69420.0) {
-                cir.setReturnValue(Optional.of(69420.0));
-            }
-        }
+    public void removeValidation(Double value, CallbackInfoReturnable<Optional<Double>> cir) {
+        if(FullBright.active && value == 69420.0) cir.setReturnValue(Optional.of(value));
     }
 }

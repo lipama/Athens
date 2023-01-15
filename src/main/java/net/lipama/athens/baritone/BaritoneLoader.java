@@ -1,5 +1,6 @@
 package net.lipama.athens.baritone;
 
+import net.lipama.athens.baritone.internal.*;
 import net.lipama.athens.*;
 
 public enum BaritoneLoader {
@@ -7,7 +8,7 @@ public enum BaritoneLoader {
 
     public void load() {
         try {
-            internal_load();
+            internalLoad();
             AthensClient.LOG.info("Baritone loaded");
         } catch(NoClassDefFoundError e) {
             AthensClient.LOG.error("BaritoneLoader.INSTANCE.load(); called when no baritone present");
@@ -15,7 +16,9 @@ public enum BaritoneLoader {
         }
     }
 
-    private void internal_load() {
+    private void internalLoad() {
         Baritone baritone = new Baritone();
+        Baritone.BARITONE_LOADED = true;
+        BaritoneMain.Main(baritone);
     }
 }

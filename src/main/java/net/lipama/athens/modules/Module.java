@@ -1,5 +1,6 @@
 package net.lipama.athens.modules;
 
+import net.lipama.athens.Athens;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -8,7 +9,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
 import net.lipama.athens.screens.AthensOptionsScreen;
-import net.lipama.athens.AthensClient;
 import net.lipama.athens.utils.*;
 
 public abstract class Module implements HudUtils.Renderable {
@@ -18,7 +18,6 @@ public abstract class Module implements HudUtils.Renderable {
     protected boolean enabled;
     public Module(String name) {
         this.NAME = name;
-        this.enabled = SaveUtils.loadState(SaveUtils.SavableData.MODULE, this.NAME);
     }
     public Text status() {
         if(this.enabled){
@@ -32,7 +31,7 @@ public abstract class Module implements HudUtils.Renderable {
     }
     public ButtonWidget buildButtonWidget() {
         ButtonWidget.Builder button = new ButtonWidget.Builder(this.status(), (btn) -> {
-            AthensClient.MODULES.toggle(this.NAME);
+            this.toggle();
             btn.setMessage(this.status());
         });
         button.dimensions(
@@ -58,17 +57,14 @@ public abstract class Module implements HudUtils.Renderable {
             this.enable();
         }
     }
-    public void tick() { this.onTick(); }
-
 
     public abstract void onEnable();
     public abstract void onDisable();
-    public abstract void onTick();
 
     @Override
     public void render(MinecraftClient mc, MatrixStack matrices, float tickDelta, CallbackInfo info) {
         if(this.enabled) {
-            mc.textRenderer.draw(matrices, this.NAME, 5, hudHeight, AthensClient.COLOR.getPacked());
+            mc.textRenderer.draw(matrices, this.NAME, 5, hudHeight, Athens.COLOR.getPacked());
         }
     }
 }

@@ -18,14 +18,30 @@ repositories {
     flatDir { dirs "libs" }
 }
 
+configurations {
+    // include mods
+    modImplementation.extendsFrom(modInclude)
+    include.extendsFrom(modInclude)
+
+    // include libraries
+    implementation.extendsFrom(library)
+    shadow.extendsFrom(library)
+}
+
 dependencies {
+    // Core requirements
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modInclude fabricApi.module("fabric-key-binding-api-v1", project.fabric_version)
+//    modInclude "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+    // Baritone, not required
     modCompileOnly "baritone-api-fabric:baritone-api-fabric:1.5.3"
+
+    // Libraries
+    library "org.reflections:reflections:${project.reflections_version}"
 }
 
 processResources {
