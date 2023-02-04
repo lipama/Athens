@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "AbstractBlockStateMixin",
+    "ClientPlayerInteractionManagerMixin",
     "FishingBobberEntityMixin",
     "GameMenuScreenMixin",
     "GameRendererMixin",
@@ -12,7 +13,8 @@
     "MouseMixin",
     "PlayerInventoryMixin",
     "SimpleOptionMixin",
-    "TitleScreenMixin"
+    "TitleScreenMixin",
+    "WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

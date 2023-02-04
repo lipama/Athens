@@ -1,19 +1,14 @@
-package net.lipama.athens.modules;
+package net.lipama.athens.modules.modules;
 
-import com.linkrbot.projects.orbit.EventHandler;
+import net.lipama.athens.modules.Module;
 import net.lipama.athens.AthensClient;
-import net.lipama.athens.events.TickEvent;
-import net.minecraft.block.AirBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FarmlandBlock;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.util.Hand;
+
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.math.*;
+import net.minecraft.util.Hand;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
 
 public class AutoFarm extends Module {
     public AutoFarm() {
@@ -30,19 +25,19 @@ public class AutoFarm extends Module {
         AthensClient.LOG.info("AutoFarm Disabled");
     }
 
-    @EventHandler
-    public void onTick(TickEvent.Post event) {
-        MinecraftClient client = AthensClient.MC;
-        if(client.player != null){
-            for (int y = -1; y <= 0; y++){
-                for (int x = -2; x <= 2; x++){
-                    for (int z = -2; z <= 2;) {
-                        tryPlant(client, client.player.getBlockPos().add(x,y,z));
-                    }
-                }
-            }
-        }
-    }
+//    @EventHandler
+//    public void onTick(TickEvent.Post event) {
+//        MinecraftClient client = AthensClient.MC;
+//        if(client.player != null){
+//            for (int y = -1; y <= 0; y++){
+//                for (int x = -2; x <= 2; x++){
+//                    for (int z = -2; z <= 2;) {
+//                        tryPlant(client, client.player.getBlockPos().add(x,y,z));
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     public void tryPlant(MinecraftClient client, BlockPos pos) {
         BlockState blockState = client.world.getBlockState(pos);

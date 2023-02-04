@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.resource.SynchronousResourceReloader;
 import net.minecraft.client.render.*;
 
-import net.lipama.athens.modules.Zoom;
+import net.lipama.athens.modules.modules.Zoom;
 
 @Mixin(GameRenderer.class)
 @SuppressWarnings({"unused", "SpellCheckingInspection"})

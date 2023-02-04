@@ -1,12 +1,10 @@
-package net.lipama.athens.modules;
+package net.lipama.athens.modules.modules;
 
-import com.linkrbot.projects.orbit.EventHandler;
-
+import net.lipama.athens.modules.Module;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.entity.Entity;
 
 import net.lipama.athens.AthensClient;
-import net.lipama.athens.events.*;
 
 public class BoatFly extends Module {
     public BoatFly() {
@@ -25,8 +23,7 @@ public class BoatFly extends Module {
 
     private int fallTime = 60;
 
-    @EventHandler
-    public void onTick(TickEvent.Post event) {
+    public void onPostTick() {
         if(enabled) {
             if(AthensClient.MC.player != null && AthensClient.MC.player.hasVehicle()) {
                 Entity vehicle = AthensClient.MC.player.getVehicle();

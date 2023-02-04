@@ -13,7 +13,7 @@ import net.lipama.athens.screens.AthensHudOverlay;
 @SuppressWarnings("unused")
 public class InGameHudMixin {
     @Inject(method = "render", at = @At("RETURN"))
-    public void changeGamma(MatrixStack _matrices, float _tickDelta, CallbackInfo _ci) { AthensHudOverlay.gamma(); }
+    public void changeGamma(MatrixStack _matrices, float _tickDelta, CallbackInfo _ci) { AthensHudOverlay.tickFullBright(); }
 
     @Inject(method = "render", at = @At("RETURN"), cancellable = true)
     public void onRender(MatrixStack matrices, float tickDelta, CallbackInfo info) { AthensHudOverlay.render(matrices, tickDelta, info); }

@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import net.minecraft.client.option.SimpleOption;
 
-import net.lipama.athens.modules.FullBright;
+import net.lipama.athens.modules.modules.FullBright;
 
 import java.util.Optional;
 
@@ -15,6 +15,6 @@ import java.util.Optional;
 public class SimpleOptionMixin {
     @Inject(method = "validate(Ljava/lang/Double;)Ljava/util/Optional;", at = @At("RETURN"), cancellable = true)
     public void removeValidation(Double value, CallbackInfoReturnable<Optional<Double>> cir) {
-        if(FullBright.active && value == 69420.0) cir.setReturnValue(Optional.of(value));
+        if(value == 69420.0) cir.setReturnValue(Optional.of(value));
     }
 }

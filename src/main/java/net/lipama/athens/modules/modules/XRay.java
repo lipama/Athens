@@ -1,5 +1,6 @@
-package net.lipama.athens.modules;
+package net.lipama.athens.modules.modules;
 
+import net.lipama.athens.modules.Module;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.util.shape.*;
@@ -68,7 +69,6 @@ public class XRay extends Module {
     public static boolean isBlockInteresting(Block block) { return BLOCKS.includes(block); }
 
     public static boolean isActive() {
-        if(Athens.MODULES.getByName("XRay")==null) return false;
-        return Athens.MODULES.getByName("XRay").enabled;
+        return Athens.MODULES.xRay.enabled;
     }
 }

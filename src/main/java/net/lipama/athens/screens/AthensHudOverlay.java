@@ -2,12 +2,9 @@ package net.lipama.athens.screens;
 
 import net.lipama.athens.Athens;
 import net.lipama.athens.AthensClient;
-import net.lipama.athens.modules.FullBright;
-import net.minecraft.client.gui.DrawableHelper;
+import net.lipama.athens.modules.modules.FullBright;
 import net.minecraft.client.util.math.MatrixStack;
-import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.util.Identifier;
 
 public class AthensHudOverlay {
@@ -26,11 +23,5 @@ public class AthensHudOverlay {
         }
     }
 
-    public static void gamma(){
-        if(FullBright.active) {
-            AthensClient.MC.options.getGamma().setValue(69420.0);
-        } else {
-            AthensClient.MC.options.getGamma().setValue(1.0);
-        }
-    }
+    public static void tickFullBright() { FullBright.tickFullBright(); }
 }

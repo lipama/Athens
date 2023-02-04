@@ -9,7 +9,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.block.*;
 
-import net.lipama.athens.modules.XRay;
+import net.lipama.athens.modules.modules.XRay;
 
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public abstract class AbstractBlockStateMixin {

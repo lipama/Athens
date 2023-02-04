@@ -1,4 +1,4 @@
-package net.lipama.athens.modules;
+package net.lipama.athens.modules.modules;
 
 import net.minecraft.client.option.SimpleOption;
 import net.minecraft.util.math.MathHelper;

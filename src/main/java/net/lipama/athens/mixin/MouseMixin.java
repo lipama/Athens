@@ -4,7 +4,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.Mixin;
 
-import net.lipama.athens.modules.Zoom;
+import net.lipama.athens.modules.modules.Zoom;
 
 import net.minecraft.client.Mouse;
 

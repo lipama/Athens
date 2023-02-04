@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import net.minecraft.entity.player.PlayerInventory;
 
-import net.lipama.athens.modules.Zoom;
+import net.lipama.athens.modules.modules.Zoom;
 
 @Mixin(PlayerInventory.class)
 @SuppressWarnings({"unused", "SpellCheckingInspection"})

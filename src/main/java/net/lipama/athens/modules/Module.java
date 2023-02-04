@@ -42,6 +42,7 @@ public abstract class Module implements HudUtils.Renderable {
         );
         return button.build();
     }
+    public boolean getEnabled() { return this.enabled; }
     public void enable() {
         this.enabled = true;
         this.onEnable();

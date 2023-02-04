@@ -1,12 +1,7 @@
 package net.lipama.athens;
 
-import com.linkrbot.projects.orbit.EventHandler;
-
-import net.lipama.athens.baritone.BaritoneLoader;
-
 import static net.lipama.athens.AthensClient.*;
 import net.lipama.athens.modules.Modules;
-import net.lipama.athens.events.*;
 import net.lipama.athens.utils.*;
 
 public class Athens {
@@ -21,11 +16,7 @@ public class Athens {
     public static void preInit(){
         LOG.info("Initializing Athens");
         useHud = SaveUtils.loadState(SaveUtils.SavableData.GLOBAL,"Hud");
-        useBaritone = SaveUtils.loadState(SaveUtils.SavableData.GLOBAL,"Baritone");
-        if(useBaritone) BaritoneLoader.INSTANCE.load();
         KeyBinds.registerKeybinds();
-        EVENT_BUS.subscribe(Athens.class);
-        Utils.init();
     }
 
     public static void postInit() {
@@ -39,13 +30,11 @@ public class Athens {
         }
     }
 
-    @EventHandler
-    public static void onTick(TickEvent.Post event) {
+    public static void onPostTick() {
         COLOR = COLOR.getNext();
     }
 
-    @EventHandler
-    private static void shutdown(ShutdownEvent event) {
+    public static void onShutdown() {
         LOG.info("Shutting Down Athens");
         SaveUtils.SaveBuilder save = new SaveUtils.SaveBuilder();
         save.addLine("Hud", useHud);

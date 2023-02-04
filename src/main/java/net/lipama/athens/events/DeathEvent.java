@@ -2,10 +2,9 @@ package net.lipama.athens.events;
 
 import net.lipama.athens.Athens;
 
-public class ShutdownEvent {
+public class DeathEvent {
     private static void onCall() {
-        Athens.onShutdown();
-        Athens.MODULES.onShutdown();
+        Athens.MODULES.autoRespawn.onDeath();
     }
     public static void call() { onCall(); }
 }

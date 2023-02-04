@@ -1,12 +1,9 @@
-package net.lipama.athens.modules;
+package net.lipama.athens.modules.modules;
 
-import com.linkrbot.projects.orbit.EventHandler;
-
-import net.lipama.athens.events.FishingBobberCatch;
+import net.lipama.athens.modules.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Hand;
 
-import net.lipama.athens.events.TickEvent;
 import net.lipama.athens.AthensClient;
 
 public class AutoFish extends Module {
@@ -27,8 +24,7 @@ public class AutoFish extends Module {
         AthensClient.LOG.info("AutoFish Disabled");
     }
 
-    @EventHandler
-    public void onTick(TickEvent.Post event) {
+    public void onPostTick() {
         if(this.recastRod>0){
             recastRod--;
         }
@@ -39,8 +35,8 @@ public class AutoFish extends Module {
         }
     }
 
-    @EventHandler
-    public void onBobberCatch(FishingBobberCatch event) {
+
+    public void onBobberCatch() {
         if(this.enabled) {
             this.recastRod = 20;
             AthensClient.MC.interactionManager.interactItem(AthensClient.MC.player, Hand.MAIN_HAND);
