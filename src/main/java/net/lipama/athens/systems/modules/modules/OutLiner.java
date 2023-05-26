@@ -1,7 +1,7 @@
 package net.lipama.athens.systems.modules.modules;
 
 import net.lipama.athens.Athens;
-import net.lipama.athens.events.ShutdownEvent;
+import net.lipama.athens.events.system.ShutdownEvent;
 import net.lipama.athens.systems.modules.Module;
 import net.lipama.athens.systems.modules.ModuleSettings;
 import net.lipama.athens.utils.SaveUtils;
@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
-public class OutLiner extends Module implements ShutdownEvent.Event {
+public class OutLiner extends Module {
     private static final class OutLinerSettings extends ModuleSettings.Settings {
         public boolean onlyPlayers = false;
 
@@ -29,7 +29,6 @@ public class OutLiner extends Module implements ShutdownEvent.Event {
     private static boolean active = false;
     public OutLiner() {
         super("OutLiner");
-        ShutdownEvent.subscribe(this);
         this.position = Position.Left(4);
     }
     @Override
@@ -39,10 +38,6 @@ public class OutLiner extends Module implements ShutdownEvent.Event {
     @Override
     public void onDisable() {
         active = false;
-        this.settings.save();
-    }
-    @Override
-    public void onShutdown() {
         this.settings.save();
     }
     public static void outline(Entity entity, CallbackInfoReturnable<Boolean> ci) {

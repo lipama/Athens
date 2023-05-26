@@ -1,14 +1,14 @@
 package net.lipama.athens.mixin;
 
-import com.mojang.authlib.exceptions.AuthenticationException;
-import com.mojang.authlib.yggdrasil.YggdrasilUserApiService;
-
-import net.lipama.athens.Athens;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.Mixin;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import com.mojang.authlib.exceptions.AuthenticationException;
+import com.mojang.authlib.yggdrasil.YggdrasilUserApiService;
+
+import net.lipama.athens.*;
+
+import java.lang.reflect.*;
 
 @Mixin(YggdrasilUserApiService.class)
 public class SilentAuthenticationExceptionErrorCatcher {

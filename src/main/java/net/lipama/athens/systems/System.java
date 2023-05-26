@@ -1,10 +1,6 @@
 package net.lipama.athens.systems;
 
-import net.lipama.athens.events.ShutdownEvent;
-
-public interface System extends
-        ShutdownEvent.Event
-{
+public interface System {
     default String name() {
         return this.getClass().getSimpleName();
     }

@@ -1,5 +1,10 @@
 package net.lipama.athens.utils;
 
+import net.lipama.athens.events.TickEvent;
+import net.lipama.athens.Athens;
+
+import net.titanium.composer.*;
+
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class RainbowColor extends Color {
     private double speed;
@@ -7,6 +12,7 @@ public class RainbowColor extends Color {
 
     public RainbowColor() {
         super();
+        Athens.COMPOSER.subscribe(this);
     }
 
     public RainbowColor setSpeed(double speed) {
@@ -23,6 +29,11 @@ public class RainbowColor extends Color {
         g = toRGBAG(c);
         b = toRGBAB(c);
         return this;
+    }
+
+    @EventHandler
+    private void onPostTick(TickEvent.Post event) {
+        this.getNext();
     }
 
     @Override

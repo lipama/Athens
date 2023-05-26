@@ -1,13 +1,13 @@
 package net.lipama.athens.systems.modules.modules;
 
-import net.lipama.athens.Athens;
 import net.lipama.athens.systems.modules.Module;
-import net.lipama.athens.events.RespawnEvent;
+import net.lipama.athens.*;
 
-public class Flight extends Module implements RespawnEvent.Event {
+//import net.titanium.composer.*;
+
+public class Flight extends Module {
     public Flight() {
         super("Flight");
-        RespawnEvent.subscribe(this);
         this.position = Position.Left(3);
     }
     @Override
@@ -20,14 +20,14 @@ public class Flight extends Module implements RespawnEvent.Event {
         Athens.LOG.info("Flight Disabled");
         if(Athens.MC.player != null) Athens.MC.player.getAbilities().allowFlying = false;
     }
-    @Override
-    public void onPlayerRespawn() {
-        assert Athens.MC.player != null;
-        Athens.MC.player.getAbilities().allowFlying = this.enabled;
-    }
-
-    public void onPlayerJoin() {
-        assert Athens.MC.player != null;
-        Athens.MC.player.getAbilities().allowFlying = this.enabled;
-    }
+//    @EventHandler
+//    public void onPlayerRespawn() {
+//        assert Athens.MC.player != null;
+//        Athens.MC.player.getAbilities().allowFlying = this.enabled;
+//    }
+//
+//    public void onPlayerJoin() {
+//        assert Athens.MC.player != null;
+//        Athens.MC.player.getAbilities().allowFlying = this.enabled;
+//    }
 }

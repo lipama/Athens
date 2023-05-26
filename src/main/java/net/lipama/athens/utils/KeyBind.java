@@ -45,14 +45,6 @@ public class KeyBind {
         public void register() {
             this.registered = true;
         }
-        public void subscribe(KeyPressEvent.Event subscriber) {
-            if(!registered) return;
-            KeyPressEvent.subscribe(subscriber);
-        }
-        public void registerListener(Consumer<KeyPressEvent> listener) {
-            if(!registered) return;
-            this.subscribe(listener::accept);
-        }
         public boolean isCorrect(KeyPressEvent event) {
             return event.keyCode == this.key;
         }

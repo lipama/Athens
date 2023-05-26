@@ -1,5 +1,6 @@
 package net.lipama.athens.mixin;
 
+import net.lipama.athens.events.TickEvent;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,7 +12,7 @@ import net.minecraft.text.Text;
 import net.lipama.athens.*;
 
 @Mixin(TitleScreen.class)
-@SuppressWarnings({"unused", "SpellCheckingInspection"})
+@SuppressWarnings({"unused"})
 public class TitleScreenMixin extends Screen {
     private static boolean firstTimeTitleScreen = true;
 
@@ -25,7 +26,7 @@ public class TitleScreenMixin extends Screen {
     )
     private void onFullLoad(MatrixStack _matrices, int _mouseX, int _mouseY, float _delta, CallbackInfo _info) {
         if(firstTimeTitleScreen) {
-            Athens.postInit();
+            Athens.COMPOSER.post(TickEvent.Post.get());
             firstTimeTitleScreen = false;
         }
     }
@@ -33,9 +34,13 @@ public class TitleScreenMixin extends Screen {
     @Inject(method = "render", at = @At("TAIL"))
     private void onRender(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if(mouseX <=50 && mouseY <= 10){
-            Athens.MC.textRenderer.drawWithShadow(matrices,"https://discord.gg/rQC3DqQqn3",3,3, Athens.SYSTEMS.COLOR.getPacked());
+            Athens.MC.textRenderer.drawWithShadow(
+                matrices,"https://discord.gg/rQC3DqQqn3",3,3, Athens.SYSTEMS.COLOR.getPacked()
+            );
         } else {
-            Athens.MC.textRenderer.drawWithShadow(matrices, Athens.MOD_NAME,3,3, Athens.SYSTEMS.COLOR.getPacked());
+            Athens.MC.textRenderer.drawWithShadow(
+                matrices, Athens.MOD_NAME,3,3, Athens.SYSTEMS.COLOR.getPacked()
+            );
         }
     }
 }

@@ -1,22 +1,19 @@
 package net.lipama.athens.systems.modules.modules;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.Hand;
+
 import net.lipama.athens.systems.modules.Module;
 import net.lipama.athens.events.*;
 import net.lipama.athens.*;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.Hand;
+import net.titanium.composer.*;
 
-public class AutoFish extends Module implements
-    FishingBobberCatchEvent.Event,
-    TickEvent.Post.Event
-{
+public class AutoFish extends Module {
     private int recastRod = -1;
 
     public AutoFish() {
         super("AutoFish");
-        FishingBobberCatchEvent.subscribe(this);
-        TickEvent.Post.subscribe(this);
         this.position = Position.Left(2);
     }
 
@@ -29,8 +26,8 @@ public class AutoFish extends Module implements
     public void onDisable() {
         Athens.LOG.info("AutoFish Disabled");
     }
-    @Override
-    public void onPostTick() {
+    @EventHandler
+    public void onPostTick(TickEvent.Post event) {
         if(this.recastRod>0){
             recastRod--;
         }
@@ -40,8 +37,8 @@ public class AutoFish extends Module implements
             recastRod = -1;
         }
     }
-    @Override
-    public void onBobberCatch() {
+    @EventHandler
+    public void onBobberCatch(FishingBobberCatchEvent event) {
         if(this.enabled) {
             this.recastRod = 20;
             Athens.MC.interactionManager.interactItem(Athens.MC.player, Hand.MAIN_HAND);

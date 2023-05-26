@@ -11,7 +11,7 @@ import net.minecraft.client.render.*;
 import net.lipama.athens.systems.modules.modules.Zoom;
 
 @Mixin(GameRenderer.class)
-@SuppressWarnings({"unused", "SpellCheckingInspection"})
+@SuppressWarnings("unused")
 public abstract class GameRendererMixin implements AutoCloseable, SynchronousResourceReloader {
     @Inject(
         at = @At(value = "RETURN", ordinal = 1),
@@ -19,9 +19,6 @@ public abstract class GameRendererMixin implements AutoCloseable, SynchronousRes
         cancellable = true
     )
     private void onGetFov(Camera _camera, float _tickDelta, boolean _changingFov, CallbackInfoReturnable<Double> cir) {
-//        AthensClient.LOG.error("Get FOV: " + cir.getReturnValueD());
-        double res = Zoom.changeFovBasedOnZoom(cir.getReturnValueD());
-        Athens.LOG.debug(""+res);
-        cir.setReturnValue(res);
+        cir.setReturnValue(Zoom.changeFovBasedOnZoom(cir.getReturnValueD()));
     }
 }

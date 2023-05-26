@@ -1,6 +1,5 @@
 package net.lipama.athens.mixin;
 
-import net.lipama.athens.systems.interfaces.IClientPlayerInteractionManager;
 import org.spongepowered.asm.mixin.injection.callback.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.*;
@@ -15,6 +14,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.*;
+
+import net.lipama.athens.systems.interfaces.IClientPlayerInteractionManager;
 
 @Mixin(ClientPlayerInteractionManager.class)
 public abstract class ClientPlayerInteractionManagerMixin implements IClientPlayerInteractionManager {
@@ -35,10 +36,6 @@ public abstract class ClientPlayerInteractionManagerMixin implements IClientPlay
 
     @Inject(at = @At("HEAD"), method = "hasExtendedReach()Z", cancellable = true)
     private void hasExtendedReach(CallbackInfoReturnable<Boolean> cir) {
-//        HackList hax = WurstClient.INSTANCE.getHax();
-//        if(hax == null || !hax.reachHack.isEnabled())
-//            return;
-
         cir.setReturnValue(true);
     }
     @Override

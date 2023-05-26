@@ -4,9 +4,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.Mixin;
 
-import net.lipama.athens.systems.modules.modules.Zoom;
-
 import net.minecraft.client.Mouse;
+
+import net.lipama.athens.systems.modules.modules.Zoom;
 
 @Mixin(Mouse.class)
 @SuppressWarnings("unused")

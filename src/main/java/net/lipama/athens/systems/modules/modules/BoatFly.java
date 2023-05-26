@@ -5,11 +5,11 @@ import net.lipama.athens.events.TickEvent;
 import net.lipama.athens.systems.modules.Module;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.entity.Entity;
+import net.titanium.composer.EventHandler;
 
-public class BoatFly extends Module implements TickEvent.Post.Event {
+public class BoatFly extends Module {
     public BoatFly() {
         super("BoatFly");
-        TickEvent.Post.subscribe(this);
         this.position = Position.Right(3);
     }
     @Override
@@ -24,7 +24,7 @@ public class BoatFly extends Module implements TickEvent.Post.Event {
 
     private int fallTime = 60;
 
-    @Override
+    @EventHandler
     public void onPostTick() {
         if(enabled) {
             if(Athens.MC.player != null && Athens.MC.player.hasVehicle()) {

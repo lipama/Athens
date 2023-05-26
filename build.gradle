@@ -38,7 +38,7 @@ dependencies {
 //    modInclude "net.fabric.fabric-api:fabric-api:${project.fabric_version}"
 
     // Titanium (https://github.com/TBBOFBD/Titanium)
-    modCompileOnly fileTree(include: ['*.jar'], dir: 'libs')
+    modInclude fileTree(include: ['*.jar'], dir: 'libs')
 
     // Libraries
     library "org.reflections:reflections:${project.reflections_version}"

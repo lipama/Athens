@@ -1,14 +1,5 @@
 package net.lipama.athens.systems.modules.modules;
 
-import net.lipama.athens.Athens;
-import net.lipama.athens.events.ShutdownEvent;
-import net.lipama.athens.events.TickEvent;
-import net.lipama.athens.systems.modules.ModuleSettings;
-import net.lipama.athens.systems.interfaces.IClientPlayerInteractionManager;
-import net.lipama.athens.utils.RotationUtils.*;
-import net.lipama.athens.systems.modules.Module;
-import net.lipama.athens.utils.*;
-
 import net.minecraft.network.packet.c2s.play.*;
 import net.minecraft.entity.decoration.*;
 import net.minecraft.client.network.*;
@@ -21,15 +12,22 @@ import net.minecraft.world.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 
+import net.lipama.athens.systems.modules.Module;
+import net.lipama.athens.utils.RotationUtils.*;
+import net.lipama.athens.systems.interfaces.*;
+import net.lipama.athens.systems.modules.*;
+import net.lipama.athens.events.*;
+import net.lipama.athens.utils.*;
+import net.lipama.athens.*;
+
+import net.titanium.composer.*;
+
 import java.util.function.*;
 import java.util.stream.*;
 import java.util.*;
 
 @SuppressWarnings("all")
-public class CrystalAura extends Module implements
-    TickEvent.Post.Event,
-    ShutdownEvent.Event
-{
+public class CrystalAura extends Module {
     private static final class CrystalAuraSettings extends ModuleSettings.Settings {
         public int range = 8;
         public boolean autoPlace = true;
@@ -58,8 +56,6 @@ public class CrystalAura extends Module implements
 
     public CrystalAura() {
         super("CrystalAura");
-        TickEvent.Post.subscribe(this);
-        ShutdownEvent.subscribe(this);
         this.position = Position.Left(0);
     }
 
@@ -73,12 +69,8 @@ public class CrystalAura extends Module implements
         this.settings.save();
         Athens.LOG.info("CrystalAura Disabled");
     }
-    @Override
-    public void onShutdown() {
-        this.settings.save();
-    }
-    @Override
-    public void onPostTick(){
+    @EventHandler
+    public void onPostTick(TickEvent.Post event) {
         if(!this.enabled) return;
 
         ArrayList<Entity> crystals = getNearbyCrystals();

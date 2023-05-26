@@ -36,6 +36,7 @@ public class ModuleSettings<S extends ModuleSettings.Settings> {
         } catch (Exception e) {
             Athens.LOG.error("MODULE SETTING INIT ERROR", e);
         }
+        Athens.COMPOSER.subscribe(this);
     }
     public boolean isLoaded() {
         return this.loaded && this.moduleSettings != null;

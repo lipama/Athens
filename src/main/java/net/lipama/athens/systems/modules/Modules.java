@@ -1,11 +1,13 @@
 package net.lipama.athens.systems.modules;
 
+import net.lipama.athens.Athens;
+import net.lipama.athens.events.system.ShutdownEvent;
 import net.lipama.athens.systems.modules.modules.*;
 import net.lipama.athens.systems.System;
-import net.lipama.athens.events.*;
 import net.lipama.athens.utils.*;
 
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.titanium.composer.EventHandler;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -35,6 +37,7 @@ public class Modules implements System {
     }
     private void add(Module module) {
         MODULES.add(module.name(), module);
+        Athens.COMPOSER.subscribe(module);
     }
     public Optional<Module> get(String id) {
         AtomicReference<Module> res = null;
@@ -47,7 +50,6 @@ public class Modules implements System {
     }
 
     public Modules() {
-        ShutdownEvent.subscribe(this);
         initModules();
 //        autoRespawn = new AutoRespawn();
 //        crystalAura = new CrystalAura();
@@ -132,8 +134,8 @@ public class Modules implements System {
 
         return res;
     }
-    @Override
-    public void onShutdown() {
+    @EventHandler
+    public void onShutdown(ShutdownEvent event) {
         SaveUtils.SaveBuilder save = new SaveUtils.SaveBuilder();
         MODULES.iter((name,module) -> {
             save.addLine(name, module.enabled);
