@@ -5,13 +5,16 @@
   "client": [
     "AbstractBlockStateMixin",
     "ClientPlayerInteractionManagerMixin",
+    "DeathScreenMixin",
     "FishingBobberEntityMixin",
     "GameMenuScreenMixin",
     "GameRendererMixin",
     "InGameHudMixin",
+    "KeyboardMixin",
     "MinecraftClientMixin",
     "MouseMixin",
     "PlayerInventoryMixin",
+    "SilentAuthenticationExceptionErrorCatcher",
     "SimpleOptionMixin",
     "TitleScreenMixin",
     "WorldRendererMixin"

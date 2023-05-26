@@ -31,3 +31,4 @@ bin/
 # fabric
 
 run/
+lib/__source__

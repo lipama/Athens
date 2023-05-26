@@ -3,7 +3,7 @@ package net.lipama.athens.utils;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
-import net.lipama.athens.AthensClient;
+import net.lipama.athens.Athens;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -18,7 +18,7 @@ import net.minecraft.util.shape.VoxelShapes;
 
 public enum BlockUtils {;
 
-    private static final MinecraftClient MC = AthensClient.MC;
+    private static final MinecraftClient MC = Athens.MC;
 
     public static BlockState getState(BlockPos pos)
     {

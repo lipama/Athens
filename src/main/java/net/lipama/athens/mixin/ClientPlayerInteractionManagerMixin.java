@@ -1,7 +1,6 @@
 package net.lipama.athens.mixin;
 
-import net.lipama.athens.modules.interfaces.IClientPlayerInteractionManager;
-import net.lipama.athens.modules.modules.Reach;
+import net.lipama.athens.systems.interfaces.IClientPlayerInteractionManager;
 import org.spongepowered.asm.mixin.injection.callback.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.*;
@@ -32,11 +31,6 @@ public abstract class ClientPlayerInteractionManagerMixin implements IClientPlay
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getId()I", ordinal = 0), method = "updateBlockBreakingProgress(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/Direction;)Z")
     private void onPlayerDamageBlock(BlockPos blockPos_1, Direction direction_1, CallbackInfoReturnable<Boolean> ci) {
 //        AthensClient.EVENT_BUS.post(new BlockBreakingProgressEvent(blockPos_1, direction_1));
-    }
-
-    @Inject(at = @At("HEAD"), method = "getReachDistance()F", cancellable = true)
-    private void onGetReachDistance(CallbackInfoReturnable<Float> ci) {
-        ci.setReturnValue(Reach.getReach());
     }
 
     @Inject(at = @At("HEAD"), method = "hasExtendedReach()Z", cancellable = true)

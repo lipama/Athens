@@ -21,11 +21,7 @@ public class TitleScreenMixin extends Screen {
 
     @Inject(
         method = "render",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/client/gui/screen/TitleScreen;drawStringWithShadow(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V",
-            ordinal = 0
-        )
+        at = @At("HEAD")
     )
     private void onFullLoad(MatrixStack _matrices, int _mouseX, int _mouseY, float _delta, CallbackInfo _info) {
         if(firstTimeTitleScreen) {
@@ -37,9 +33,9 @@ public class TitleScreenMixin extends Screen {
     @Inject(method = "render", at = @At("TAIL"))
     private void onRender(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if(mouseX <=50 && mouseY <= 10){
-            AthensClient.MC.textRenderer.drawWithShadow(matrices,"https://discord.gg/rQC3DqQqn3",3,3, Athens.COLOR.getPacked());
+            Athens.MC.textRenderer.drawWithShadow(matrices,"https://discord.gg/rQC3DqQqn3",3,3, Athens.SYSTEMS.COLOR.getPacked());
         } else {
-            AthensClient.MC.textRenderer.drawWithShadow(matrices,AthensClient.MOD_NAME,3,3, Athens.COLOR.getPacked());
+            Athens.MC.textRenderer.drawWithShadow(matrices, Athens.MOD_NAME,3,3, Athens.SYSTEMS.COLOR.getPacked());
         }
     }
 }

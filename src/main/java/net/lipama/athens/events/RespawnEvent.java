@@ -1,10 +1,19 @@
 package net.lipama.athens.events;
 
-import net.lipama.athens.Athens;
+import java.util.ArrayList;
 
 public class RespawnEvent {
-    private static void onCall() {
-        Athens.MODULES.flight.onPlayerRespawn();
+    public interface Event {
+        void onPlayerRespawn();
     }
-    public static void call() { onCall(); }
+    private static final ArrayList<RespawnEvent.Event> EVENTS = new ArrayList<>();
+    public static void call() {
+        for(RespawnEvent.Event event : EVENTS) {
+            event.onPlayerRespawn();
+        }
+    }
+    public static void subscribe(RespawnEvent.Event event) {
+        EVENTS.add(event);
+    }
+
 }

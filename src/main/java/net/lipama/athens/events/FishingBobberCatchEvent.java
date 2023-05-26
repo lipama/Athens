@@ -1,10 +1,18 @@
 package net.lipama.athens.events;
 
-import net.lipama.athens.Athens;
+import java.util.ArrayList;
 
 public class FishingBobberCatchEvent extends TickEvent {
-    private static void onCall() {
-        Athens.MODULES.autoFish.onBobberCatch();
+    public interface Event {
+        void onBobberCatch();
     }
-    public static void call() { onCall(); }
+    private static final ArrayList<FishingBobberCatchEvent.Event> EVENTS = new ArrayList<>();
+    public static void call() {
+        for(FishingBobberCatchEvent.Event event : EVENTS) {
+            event.onBobberCatch();
+        }
+    }
+    public static void subscribe(FishingBobberCatchEvent.Event event) {
+        EVENTS.add(event);
+    }
 }

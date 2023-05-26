@@ -1,10 +1,18 @@
 package net.lipama.athens.events;
 
-import net.lipama.athens.Athens;
+import java.util.ArrayList;
 
 public class DeathEvent {
-    private static void onCall() {
-        Athens.MODULES.autoRespawn.onDeath();
+    public interface Event {
+        void onDeath();
     }
-    public static void call() { onCall(); }
+    private static final ArrayList<DeathEvent.Event> EVENTS = new ArrayList<>();
+    public static void call() {
+        for(DeathEvent.Event event : EVENTS) {
+            event.onDeath();
+        }
+    }
+    public static void subscribe(DeathEvent.Event event) {
+        EVENTS.add(event);
+    }
 }

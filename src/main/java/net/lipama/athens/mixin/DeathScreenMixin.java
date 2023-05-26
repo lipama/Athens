@@ -12,7 +12,7 @@ import net.minecraft.client.gui.screen.*;
 public class DeathScreenMixin extends Screen {
     private DeathScreenMixin(Text title) { super(title); }
 
-    @Inject(at = @At(value = "TAIL"), method = "tick()V")
+    @Inject(at = @At(value = "TAIL"), method = "render")
     private void onTick(CallbackInfo ci) {
         DeathEvent.call();
     }

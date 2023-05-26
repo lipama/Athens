@@ -8,7 +8,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.text.Text;
 
-import net.lipama.athens.screens.AthensOptionsScreen;
+import net.lipama.athens.systems.screens.AthensOptionsScreen;
 
 @Mixin(GameMenuScreen.class)
 @SuppressWarnings({"unused", "ConstantConditions"})

@@ -1,6 +1,6 @@
 package net.lipama.athens.utils;
 
-import net.lipama.athens.AthensClient;
+import net.lipama.athens.Athens;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -8,7 +8,7 @@ import net.minecraft.util.math.Vec3d;
 public enum RotationUtils {;
 
     public static Vec3d getEyesPos() {
-        ClientPlayerEntity player = AthensClient.MC.player;
+        ClientPlayerEntity player = Athens.MC.player;
 
         return new Vec3d(player.getX(),
                 player.getY() + player.getEyeHeight(player.getPose()),
@@ -16,7 +16,7 @@ public enum RotationUtils {;
     }
 
     public static Vec3d getClientLookVec() {
-        ClientPlayerEntity player = AthensClient.MC.player;
+        ClientPlayerEntity player = Athens.MC.player;
         float f = 0.017453292F;
         float pi = (float)Math.PI;
 
@@ -59,7 +59,7 @@ public enum RotationUtils {;
     public static double getAngleToLookVec(Vec3d vec) {
         Rotation needed = getNeededRotations(vec);
 
-        ClientPlayerEntity player = AthensClient.MC.player;
+        ClientPlayerEntity player = Athens.MC.player;
         float currentYaw = MathHelper.wrapDegrees(player.getYaw());
         float currentPitch = MathHelper.wrapDegrees(player.getPitch());
 
@@ -85,7 +85,7 @@ public enum RotationUtils {;
 
     public static float getHorizontalAngleToLookVec(Vec3d vec) {
         Rotation needed = getNeededRotations(vec);
-        return MathHelper.wrapDegrees(AthensClient.MC.player.getYaw()) - needed.yaw;
+        return MathHelper.wrapDegrees(Athens.MC.player.getYaw()) - needed.yaw;
     }
 
     public static final class Rotation

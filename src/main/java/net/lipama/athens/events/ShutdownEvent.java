@@ -1,11 +1,18 @@
 package net.lipama.athens.events;
 
-import net.lipama.athens.Athens;
+import java.util.ArrayList;
 
 public class ShutdownEvent {
-    private static void onCall() {
-        Athens.onShutdown();
-        Athens.MODULES.onShutdown();
+    public interface Event {
+        void onShutdown();
     }
-    public static void call() { onCall(); }
+    private static final ArrayList<ShutdownEvent.Event> EVENTS = new ArrayList<>();
+    public static void call() {
+        for(Event event : EVENTS) {
+            event.onShutdown();
+        }
+    }
+    public static void subscribe(Event event) {
+        EVENTS.add(event);
+    }
 }

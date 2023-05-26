@@ -2,21 +2,39 @@ package net.lipama.athens.events;
 
 import net.lipama.athens.Athens;
 
+import java.util.ArrayList;
+
+@SuppressWarnings("unused")
 public class TickEvent {
     public static class Pre {
-        private static void onCall() {
-
+        public interface Event {
+            void onPreTick();
         }
-        public static void call() { onCall(); }
+        private static final ArrayList<TickEvent.Pre.Event> EVENTS = new ArrayList<>();
+        public static void call() {
+            for(TickEvent.Pre.Event event : EVENTS) {
+                event.onPreTick();
+            }
+        }
+        public static void subscribe(TickEvent.Pre.Event event) {
+            EVENTS.add(event);
+        }
     }
 
     public static class Post {
-        private static void onCall() {
-            Athens.onPostTick();
-            Athens.MODULES.crystalAura.onPostTick();
-            Athens.MODULES.autoFish.onPostTick();
-            Athens.MODULES.boatFly.onPostTick();
+
+        public interface Event {
+            void onPostTick();
         }
-        public static void call() { onCall(); }
+        private static final ArrayList<TickEvent.Post.Event> EVENTS = new ArrayList<>();
+        public static void call() {
+            Athens.onPostTick();
+            for(TickEvent.Post.Event event : EVENTS) {
+                event.onPostTick();
+            }
+        }
+        public static void subscribe(TickEvent.Post.Event event) {
+            EVENTS.add(event);
+        }
     }
 }

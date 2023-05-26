@@ -35,14 +35,15 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modInclude fabricApi.module("fabric-key-binding-api-v1", project.fabric_version)
-//    modInclude "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+//    modInclude "net.fabric.fabric-api:fabric-api:${project.fabric_version}"
 
-    // Baritone, not required
-    modCompileOnly "baritone-api-fabric:baritone-api-fabric:1.5.3"
+    // Titanium (https://github.com/TBBOFBD/Titanium)
+    modCompileOnly fileTree(include: ['*.jar'], dir: 'libs')
 
     // Libraries
     library "org.reflections:reflections:${project.reflections_version}"
 }
+
 
 processResources {
     filesMatching("fabric.mod.json") {
