@@ -85,10 +85,12 @@ public abstract class Module implements HudUtils.Renderable {
     }
     public void enable() {
         this.enabled = true;
+        Athens.COMPOSER.subscribe(this);
         this.onEnable();
     }
     public void disable() {
         this.enabled = false;
+        Athens.COMPOSER.unsubscribe(this);
         this.onDisable();
     }
     public void toggle() {

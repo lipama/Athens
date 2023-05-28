@@ -37,7 +37,7 @@ public class Modules implements System {
     }
     private void add(Module module) {
         MODULES.add(module.name(), module);
-        Athens.COMPOSER.subscribe(module);
+//        Athens.COMPOSER.subscribe(module);
     }
     public Optional<Module> get(String id) {
         AtomicReference<Module> res = null;
