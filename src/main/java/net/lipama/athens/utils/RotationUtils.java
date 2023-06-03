@@ -5,11 +5,13 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
+@SuppressWarnings("unused")
 public enum RotationUtils {;
 
     public static Vec3d getEyesPos() {
         ClientPlayerEntity player = Athens.MC.player;
 
+        assert player != null;
         return new Vec3d(player.getX(),
                 player.getY() + player.getEyeHeight(player.getPose()),
                 player.getZ());
@@ -20,6 +22,7 @@ public enum RotationUtils {;
         float f = 0.017453292F;
         float pi = (float)Math.PI;
 
+        assert player != null;
         float f1 = MathHelper.cos(-player.getYaw() * f - pi);
         float f2 = MathHelper.sin(-player.getYaw() * f - pi);
         float f3 = -MathHelper.cos(-player.getPitch() * f);
@@ -27,19 +30,6 @@ public enum RotationUtils {;
 
         return new Vec3d(f2 * f3, f4, f1 * f3);
     }
-
-//    public static Vec3d getServerLookVec()
-//    {
-//        RotationFaker rotationFaker = AthensClient.getRotationFaker();
-//        float serverYaw = rotationFaker.getServerYaw();
-//        float serverPitch = rotationFaker.getServerPitch();
-//
-//        float f = MathHelper.cos(-serverYaw * 0.017453292F - (float)Math.PI);
-//        float f1 = MathHelper.sin(-serverYaw * 0.017453292F - (float)Math.PI);
-//        float f2 = -MathHelper.cos(-serverPitch * 0.017453292F);
-//        float f3 = MathHelper.sin(-serverPitch * 0.017453292F);
-//        return new Vec3d(f1 * f2, f3, f * f2);
-//    }
 
     public static Rotation getNeededRotations(Vec3d vec) {
         Vec3d eyesPos = getEyesPos();
@@ -60,6 +50,7 @@ public enum RotationUtils {;
         Rotation needed = getNeededRotations(vec);
 
         ClientPlayerEntity player = Athens.MC.player;
+        assert player != null;
         float currentYaw = MathHelper.wrapDegrees(player.getYaw());
         float currentPitch = MathHelper.wrapDegrees(player.getPitch());
 
@@ -69,44 +60,16 @@ public enum RotationUtils {;
         return Math.sqrt(diffYaw * diffYaw + diffPitch * diffPitch);
     }
 
-//    public static double getAngleToLastReportedLookVec(Vec3d vec)
-//    {
-//        Rotation needed = getNeededRotations(vec);
-//
-//        IClientPlayerEntity player = WurstClient.IMC.getPlayer();
-//        float lastReportedYaw = MathHelper.wrapDegrees(player.getLastYaw());
-//        float lastReportedPitch = MathHelper.wrapDegrees(player.getLastPitch());
-//
-//        float diffYaw = lastReportedYaw - needed.yaw;
-//        float diffPitch = lastReportedPitch - needed.pitch;
-//
-//        return Math.sqrt(diffYaw * diffYaw + diffPitch * diffPitch);
-//    }
-
     public static float getHorizontalAngleToLookVec(Vec3d vec) {
         Rotation needed = getNeededRotations(vec);
+        assert Athens.MC.player != null;
         return MathHelper.wrapDegrees(Athens.MC.player.getYaw()) - needed.yaw;
     }
 
-    public static final class Rotation
-    {
-        private final float yaw;
-        private final float pitch;
-
-        public Rotation(float yaw, float pitch)
-        {
-            this.yaw = MathHelper.wrapDegrees(yaw);
-            this.pitch = MathHelper.wrapDegrees(pitch);
+    public record Rotation(float yaw, float pitch) {
+            public Rotation(float yaw, float pitch) {
+                this.yaw = MathHelper.wrapDegrees(yaw);
+                this.pitch = MathHelper.wrapDegrees(pitch);
+            }
         }
-
-        public float getYaw()
-        {
-            return yaw;
-        }
-
-        public float getPitch()
-        {
-            return pitch;
-        }
-    }
 }

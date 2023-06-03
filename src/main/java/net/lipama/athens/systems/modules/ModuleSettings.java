@@ -6,14 +6,6 @@ import net.lipama.athens.Athens;
 import java.lang.reflect.Constructor;
 
 public class ModuleSettings<S extends ModuleSettings.Settings> {
-//    public static <S extends ModuleSettings.Settings> ModuleSettings<S> initLoaded(String id) {
-//        Class<S> clazz = (Class<S>) (new Object()).getClass();
-//        return initLoaded(id, clazz);
-//    }
-//    public static <S extends ModuleSettings.Settings> ModuleSettings<S> initUnloaded(String id) {
-//        Class<S> clazz = (Class<S>) (new Object()).getClass();
-//        return initUnloaded(id, clazz);
-//    }
     public static <S extends ModuleSettings.Settings> ModuleSettings<S> initLoaded(String id, Class<S> clazz) {
         ModuleSettings<S> moduleSettings = initUnloaded(id, clazz);
         moduleSettings.load();
@@ -55,28 +47,9 @@ public class ModuleSettings<S extends ModuleSettings.Settings> {
             Athens.LOG.error("NEVER LOADED");
             return;
         }
-        Athens.LOG.error("SAVING");
-        {
-            SaveUtils.SaveBuilder save = new SaveUtils.SaveBuilder();
-            this.moduleSettings.saveCurrentStateToStringViaBuilder(save);
-            SaveUtils.saveState(this.SAVE, save.build());
-        }
-//        S backup = this.moduleSettings;
-//        SaveUtils.SaveBuilder backupSave = new SaveUtils.SaveBuilder();
-//        backup.saveCurrentStateToStringViaBuilder(backupSave);
-//        byte[] backupBytes = backupSave.build();
-//        {
-//            this.load();
-//            SaveUtils.SaveBuilder save = new SaveUtils.SaveBuilder();
-//            moduleSettings.saveCurrentStateToStringViaBuilder(save);
-//            byte[] output = save.build();
-//            if(output != backupBytes) {
-//                this.moduleSettings = backup;
-//                this.save();
-//            } else {
-//                Athens.LOG.info("Saved successfully");
-//            }
-//        }
+        SaveUtils.SaveBuilder save = new SaveUtils.SaveBuilder();
+        this.moduleSettings.saveCurrentStateToStringViaBuilder(save);
+        SaveUtils.saveState(this.SAVE, save.build());
     }
     public static abstract class Settings implements SaveUtils.StateParsable {}
     public interface EnumSetting extends SaveUtils.StringParsable {}

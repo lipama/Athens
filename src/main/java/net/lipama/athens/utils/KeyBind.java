@@ -7,9 +7,7 @@ import net.lipama.athens.events.KeyPressEvent;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.*;
 
-import java.util.function.Consumer;
-
-
+@SuppressWarnings("unused")
 public class KeyBind {
     public static CustomizableKeyBind generateCustomizable(String id, int key) {
         return generateCustomizable(id, key, null);

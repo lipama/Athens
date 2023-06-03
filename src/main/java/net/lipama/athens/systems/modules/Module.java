@@ -1,15 +1,15 @@
 package net.lipama.athens.systems.modules;
 
+import net.lipama.athens.systems.screens.AthensHud;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
 import net.lipama.athens.systems.screens.AthensOptionsScreen;
-import net.lipama.athens.utils.*;
 import net.lipama.athens.*;
 
-public abstract class Module implements HudUtils.Renderable {
+public abstract class Module implements AthensHud.Renderable {
     private static final int TOP_PADDING = 25;
     private static final int SIDE_PADDING = 5;
     private static final int BOX_SIZE = 150;
@@ -45,7 +45,6 @@ public abstract class Module implements HudUtils.Renderable {
         }
     }
     protected Position position = Position.Left(0);
-    protected int hudHeight = 5;
     private final String NAME;
     protected boolean enabled;
     public Module(String name) {
@@ -94,20 +93,17 @@ public abstract class Module implements HudUtils.Renderable {
         this.onDisable();
     }
     public void toggle() {
-        if(enabled) {
-            this.disable();
-        } else {
-            this.enable();
-        }
+        if(enabled) this.disable();
+        else this.enable();
     }
 
     public abstract void onEnable();
     public abstract void onDisable();
 
     @Override
-    public void render(MinecraftClient mc, MatrixStack matrices, float tickDelta) {
-        if(this.enabled) {
-            mc.textRenderer.draw(matrices, this.NAME, 5, hudHeight, Athens.SYSTEMS.COLOR.getPacked());
-        }
+    public int render(int level, MinecraftClient mc, MatrixStack matrices, float tickDelta) {
+        if(!this.enabled) return 0;
+        mc.textRenderer.drawWithShadow(matrices, this.NAME, 5, level, Athens.SYSTEMS.COLOR.getPacked());
+        return AthensHud.MODULE_NAME_PADDING;
     }
 }

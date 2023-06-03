@@ -2,6 +2,7 @@ package net.lipama.athens.utils;
 
 import net.lipama.athens.Athens;
 
+import java.util.function.*;
 import java.util.*;
 import java.io.*;
 
@@ -29,6 +30,9 @@ public class SaveUtils {
         }
         public <T extends StringParsable> SaveBuilder addParsableLine(String key, T value) {
             return addLine(key, value.asString());
+        }
+        public <T> SaveBuilder addLine$(String key, T value, Function<T, String> f) {
+            return addLine(key, f.apply(value));
         }
         public <T> SaveBuilder addLine(String key, T value) {
             ArrayList<Byte> kvRes = new ArrayList<>();
@@ -59,6 +63,7 @@ public class SaveUtils {
         SavableData(File file){
             this.saveFile = file;
         }
+        @SuppressWarnings("ResultOfMethodCallIgnored")
         public void save(byte[] data) {
             try {
                 if(!this.saveFile.exists()) {
@@ -71,6 +76,7 @@ public class SaveUtils {
                 Athens.LOG.error("FAILED TO SAVE STATE FOR " + this.saveFile.getName());
             }
         }
+        @SuppressWarnings("ResultOfMethodCallIgnored")
         public Loader load() {
             try {
                 if(!this.saveFile.exists()) {
@@ -87,20 +93,45 @@ public class SaveUtils {
             }
         }
     }
+    @SuppressWarnings("unused")
     public static final class Loader {
         private final Properties properties;
         private Loader(Properties properties) {
             this.properties = properties;
         }
-        public String loadS(String id) {
-            if(properties == null) return null;
+        public String String$(String id) {
+            if(properties == null) return "";
             return properties.getProperty(id);
         }
-        public boolean LoadB(String id) {
-            return Boolean.parseBoolean(loadS(id));
+        public boolean bool$(String id) {
+            return Boolean.parseBoolean(String$(id));
         }
-        public int loadI(String id) {
-            return Integer.parseInt(loadS(id));
+        public int int$(String id) {
+            try {
+                return Integer.parseInt(String$(id));
+            } catch (Exception ignored) {
+                return 0;
+            }
+        }
+        public double double$(String id) {
+            try {
+                return Double.parseDouble(String$(id));
+            } catch (Exception ignored) {
+                return 0.0;
+            }
+        }
+        public float float$(String id) {
+            try {
+                return Float.parseFloat(String$(id));
+            } catch (Exception ignored) {
+                return 0;
+            }
+        }
+        public char char$(String id) {
+            return String$(id).charAt(0);
+        }
+        public <T> T $(String id, Function<String, T> f) {
+            return f.apply(id);
         }
     }
 }

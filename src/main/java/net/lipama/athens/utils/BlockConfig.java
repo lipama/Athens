@@ -55,7 +55,9 @@ public class BlockConfig {
             Blocks.DRAGON_WALL_HEAD, Blocks.DRAGON_HEAD, Blocks.DRAGON_EGG
         ));
         private final BlockConfig cfg;
-        Templates(BlockConfig blockConfig) { this.cfg = blockConfig; }
+        Templates(BlockConfig blockConfig) {
+            this.cfg = blockConfig;
+        }
         public BlockConfig getBlocks() {
             return this.cfg;
         }
@@ -67,9 +69,6 @@ public class BlockConfig {
         this.blocks = new ArrayList<>();
         Collections.addAll(this.blocks, blocks);
     }
-
-
-
     public void add(Block... blocks) {
         Collections.addAll(this.blocks, blocks);
     }

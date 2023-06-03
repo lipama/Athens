@@ -21,7 +21,7 @@ public class OutLiner extends Module {
 
         @Override
         public void updateInstanceSettingsViaLoader(SaveUtils.Loader loader) {
-            this.onlyPlayers = loader.LoadB("op");
+            this.onlyPlayers = loader.bool$("op");
         }
     }
     private final ModuleSettings<OutLinerSettings> settings =
@@ -34,6 +34,7 @@ public class OutLiner extends Module {
     @Override
     public void onEnable() {
         active = true;
+        this.settings.load();
     }
     @Override
     public void onDisable() {
@@ -44,13 +45,10 @@ public class OutLiner extends Module {
         if(!active) return;
         Optional<OutLiner> outLiner = getInstance();
         if(outLiner.isEmpty()) return;
-        if(outLiner.get().settings.get().onlyPlayers) {
-            if(entity.isPlayer()) ci.setReturnValue(true);
-            else ci.setReturnValue(false);
-        } else {
-            ci.setReturnValue(true);
-        }
-//        if(!entity.isPlayer() && outLiner.get().settings.get().onlyPlayers) return;
+        ci.setReturnValue(!(
+            outLiner.get().settings.get().onlyPlayers &&
+            !entity.isPlayer()
+        ));
     }
     @SuppressWarnings("all")
     public static Optional<OutLiner> getInstance() {

@@ -16,8 +16,8 @@ public class InGameHudMixin {
     public void changeGamma(MatrixStack _matrices, float _tickDelta, CallbackInfo _ci) {
         AthensHudOverlay.tickFullBright();
     }
-    @Inject(method = "render", at = @At("RETURN"), cancellable = true)
-    public void onRender(MatrixStack matrices, float tickDelta, CallbackInfo _info) {
+    @Inject(method = "render", at = @At("RETURN"))
+    public void onRender(MatrixStack matrices, float tickDelta, CallbackInfo _ci) {
         AthensHudOverlay.render(matrices, tickDelta);
     }
 }

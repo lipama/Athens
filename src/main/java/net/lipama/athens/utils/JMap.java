@@ -1,11 +1,10 @@
 package net.lipama.athens.utils;
 
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.BiConsumer;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.*;
 
-public class JMap<K, V> implements Iterable<V> {
+public class JMap<K, V> extends ConcurrentHashMap<K, V> {
     private final ConcurrentHashMap<K,V> INTERNAL;
     private JMap() {
         INTERNAL = new ConcurrentHashMap<>();
@@ -16,7 +15,7 @@ public class JMap<K, V> implements Iterable<V> {
     public void add(K key, V value) {
         INTERNAL.put(key, value);
     }
-    public Optional<V> get(K key) {
+    public Optional<V> g(K key) {
         return Optional.ofNullable(INTERNAL.get(key));
     }
     public void iter(BiConsumer<K, V> consumer) {
@@ -24,9 +23,5 @@ public class JMap<K, V> implements Iterable<V> {
     }
     public V rm(K key) {
         return INTERNAL.remove(key);
-    }
-    @Override
-    public Iterator<V> iterator() {
-        return INTERNAL.values().iterator();
     }
 }
