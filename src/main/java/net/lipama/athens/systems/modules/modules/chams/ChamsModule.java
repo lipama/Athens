@@ -35,7 +35,7 @@ public class ChamsModule extends Module {
     @SuppressWarnings("all")
     public static boolean isActive() {
         try {
-            return Athens.SYSTEMS.MODULES.MODULES.get("Chams").get().getEnabled();
+            return Athens.SYSTEMS.MODULES.MODULES.g("Chams").get().getEnabled();
         } catch (Exception ignored) {
             return false;
         }
@@ -44,7 +44,7 @@ public class ChamsModule extends Module {
     @SuppressWarnings("all")
     public static ChamsModuleSettings getSettings() {
         try {
-            return ((ChamsModule) Athens.SYSTEMS.MODULES.MODULES.get("Chams").get()).settings.get();
+            return ((ChamsModule) Athens.SYSTEMS.MODULES.MODULES.g("Chams").get()).settings.get();
         } catch (Exception e) {
             Athens.LOG.error("getSettings", e);
             throw new IllegalStateException(e);

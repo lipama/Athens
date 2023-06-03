@@ -52,7 +52,7 @@ public class OutLiner extends Module {
     }
     @SuppressWarnings("all")
     public static Optional<OutLiner> getInstance() {
-        Optional<Module> moduleOptional = Athens.SYSTEMS.MODULES.MODULES.get("OutLiner");
+        Optional<Module> moduleOptional = Athens.SYSTEMS.MODULES.MODULES.g("OutLiner");
         if(moduleOptional.isPresent()) {
             return Optional.ofNullable((OutLiner) moduleOptional.get());
         }

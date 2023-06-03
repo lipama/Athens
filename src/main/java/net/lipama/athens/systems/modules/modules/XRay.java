@@ -69,6 +69,6 @@ public class XRay extends Module {
     public static boolean isBlockInteresting(Block block) { return BLOCKS.includes(block); }
 
     public static boolean isActive() {
-        return Athens.SYSTEMS.MODULES.MODULES.get("XRay").get().getEnabled();
+        return Athens.SYSTEMS.MODULES.MODULES.g("XRay").get().getEnabled();
     }
 }
