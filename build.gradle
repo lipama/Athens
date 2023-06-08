@@ -5,12 +5,15 @@ plugins {
 }
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
-
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
 repositories {
+    maven {
+        name = 'Atomic'
+        url = 'https://github.linkrbot.com/maven/'
+    }
     maven {
         name = 'Fabric'
         url = 'https://maven.fabricmc.net/'
@@ -36,11 +39,15 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modInclude fabricApi.module("fabric-key-binding-api-v1", project.fabric_version)
-//    modInclude "net.fabric.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation fabricApi.module("fabric-key-binding-api-v1", project.fabric_version)
 
     // Titanium (https://github.com/TBBOFBD/Titanium)
-    modInclude fileTree(include: ['*.jar'], dir: 'libs')
+    modImplementation "net.titanium:Titanium:${project.titanium_version}"
+
+    // HyperJ (https://github.com/AtomicGamer9523/HyperJ)
+    modImplementation "net.hyperj:HyperJ:${project.hyperj_version}"
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Libraries
     library "org.reflections:reflections:${project.reflections_version}"
