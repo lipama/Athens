@@ -1,6 +1,7 @@
 package net.lipama.athens.systems.modules;
 
 import net.lipama.athens.systems.screens.AthensHud;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.MinecraftClient;
@@ -101,9 +102,9 @@ public abstract class Module implements AthensHud.Renderable {
     public abstract void onDisable();
 
     @Override
-    public int render(int level, MinecraftClient mc, MatrixStack matrices, float tickDelta) {
+    public int render(int level, MinecraftClient mc, DrawContext context, float tickDelta) {
         if(!this.enabled) return 0;
-        mc.textRenderer.drawWithShadow(matrices, this.NAME, 5, level, Athens.SYSTEMS.COLOR.getPacked());
+        context.drawText(mc.textRenderer, this.NAME, 5, level, Athens.SYSTEMS.COLOR.getPacked(), true);
         return AthensHud.MODULE_NAME_PADDING;
     }
 }

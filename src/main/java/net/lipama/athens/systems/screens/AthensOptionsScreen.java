@@ -1,5 +1,6 @@
 package net.lipama.athens.systems.screens;
 
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -44,12 +45,12 @@ public class AthensOptionsScreen<T extends Element & Drawable & Selectable> exte
             this.addDrawableChild(widget);
         }
     }
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        if(RENDER_BACKGROUND) this.renderBackground(matrices);// TODO: Improve this
-        drawCenteredTextWithShadow(
-            matrices, this.textRenderer, this.title, this.width / 2, 5,
-            Athens.SYSTEMS.COLOR.getPacked()
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        if(RENDER_BACKGROUND) this.renderBackground(context, mouseX, mouseY, delta);// TODO: Improve this
+        context.drawText(
+            this.textRenderer, this.title, this.width / 2, 5,
+            Athens.SYSTEMS.COLOR.getPacked(), true
         );
-        super.render(matrices, mouseX, mouseY, delta);
+        super.render(context, mouseX, mouseY, delta);
     }
 }

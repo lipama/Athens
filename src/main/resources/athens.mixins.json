@@ -17,7 +17,6 @@
     "MouseMixin",
     "PlayerInventoryMixin",
     "PlayerRenderMixin",
-    "SilentAuthenticationExceptionErrorCatcher",
     "SimpleOptionMixin",
     "TitleScreenMixin",
     "WorldRendererMixin"

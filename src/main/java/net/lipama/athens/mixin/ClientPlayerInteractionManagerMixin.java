@@ -19,7 +19,7 @@ import net.lipama.athens.systems.interfaces.IClientPlayerInteractionManager;
 
 @Mixin(ClientPlayerInteractionManager.class)
 public abstract class ClientPlayerInteractionManagerMixin implements IClientPlayerInteractionManager {
-    @Shadow private MinecraftClient client;
+    @Shadow @Final private MinecraftClient client;
     @Shadow private float currentBreakingProgress;
     @Shadow private boolean breakingBlock;
 

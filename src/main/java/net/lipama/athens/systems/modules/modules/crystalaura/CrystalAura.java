@@ -110,7 +110,7 @@ public class CrystalAura extends Module {
 
     private boolean selectItem(Predicate<Item> item) {
         PlayerInventory inventory = Athens.MC.player.getInventory();
-        IClientPlayerInteractionManager im = Athens.IMC.getInteractionManager();
+        IClientPlayerInteractionManager im = Athens.IMC.getIInteractionManager();
 
         if (!settings.isLoaded()) return false;
         if (settings.get() == null) return false;
@@ -193,7 +193,7 @@ public class CrystalAura extends Module {
             settings.get().faceBlocksMode.face(hitVec);
 
             // place blocK
-            Athens.IMC.getInteractionManager().rightClickBlock(neighbor, side.getOpposite(), hitVec);
+            Athens.IMC.getIInteractionManager().rightClickBlock(neighbor, side.getOpposite(), hitVec);
 
             return true;
         }
@@ -268,7 +268,7 @@ public class CrystalAura extends Module {
     }
 
     private boolean isReplaceable(BlockPos pos) {
-        return BlockUtils.getState(pos).getMaterial().isReplaceable();
+        return BlockUtils.getState(pos).isReplaceable();
     }
 
     private boolean hasCrystalBase(BlockPos pos) {
@@ -277,6 +277,6 @@ public class CrystalAura extends Module {
     }
 
     private boolean isClickableNeighbor(BlockPos pos) {
-        return BlockUtils.canBeClicked(pos) && !BlockUtils.getState(pos).getMaterial().isReplaceable();
+        return BlockUtils.canBeClicked(pos) && !BlockUtils.getState(pos).isReplaceable();
     }
 }

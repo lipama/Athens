@@ -16,7 +16,7 @@ public class PlayerRendering extends Rendering {
     public static final String TARGET = "Lnet/minecraft/client/model/ModelPart;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;II)V";
     public static void modifyRenderLayer(Args args, VertexConsumerProvider vertexConsumers, AbstractClientPlayerEntity player) {
         if (a() && p().enabled) {
-            Identifier texture = p().texturePlayers ? player.getSkinTexture() : ChamsModule.GOD_PLAYER;
+            Identifier texture = p().texturePlayers ? player.getSkinTextures().texture() : ChamsModule.GOD_PLAYER;
             args.set(1, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(texture)));
         }
     }

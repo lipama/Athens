@@ -7,9 +7,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.block.*;
 import net.minecraft.util.*;
 
-import net.hyperj.util.*;
-import net.hyperj.*;
-
+import net.lipama.jhell.result.*;
 import net.lipama.athens.Athens;
 
 import java.util.stream.Stream;

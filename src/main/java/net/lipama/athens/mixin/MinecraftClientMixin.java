@@ -40,7 +40,7 @@ public abstract class MinecraftClientMixin implements IMinecraftClient {
     }
 
     @Override
-    public IClientPlayerInteractionManager getInteractionManager() {
+    public IClientPlayerInteractionManager getIInteractionManager() {
         return (IClientPlayerInteractionManager)interactionManager;
     }
 

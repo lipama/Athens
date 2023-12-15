@@ -3,6 +3,7 @@ package net.lipama.athens.systems.screens;
 import net.lipama.athens.Athens;
 import net.lipama.athens.systems.modules.Modules;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
 
 import java.util.ArrayList;
@@ -19,13 +20,13 @@ public class AthensHud {
     public void init() {
         Modules.MODULES.iter((_name, m) -> add(m));
     }
-    public void renderHudElements(MatrixStack matrices, float tickDelta) {
+    public void renderHudElements(DrawContext context, float tickDelta) {
         int i = 5;
         for(Renderable item : QUEUE) {
-            i += item.render(i, Athens.MC, matrices, tickDelta);
+            i += item.render(i, Athens.MC, context, tickDelta);
         }
     }
     public interface Renderable {
-        int render(int level, MinecraftClient mc, MatrixStack matrices, float tickDelta);
+        int render(int level, MinecraftClient mc, DrawContext matrices, float tickDelta);
     }
 }

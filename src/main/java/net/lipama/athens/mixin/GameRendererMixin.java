@@ -1,6 +1,5 @@
 package net.lipama.athens.mixin;
 
-import net.lipama.athens.Athens;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.Mixin;
