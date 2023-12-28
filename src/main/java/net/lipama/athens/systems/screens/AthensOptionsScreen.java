@@ -47,9 +47,9 @@ public class AthensOptionsScreen<T extends Element & Drawable & Selectable> exte
     }
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         if(RENDER_BACKGROUND) this.renderBackground(context, mouseX, mouseY, delta);// TODO: Improve this
-        context.drawText(
-            this.textRenderer, this.title, this.width / 2, 5,
-            Athens.SYSTEMS.COLOR.getPacked(), true
+        context.drawCenteredTextWithShadow(
+            this.textRenderer, this.title, 0, 5,
+            Athens.SYSTEMS.COLOR.getPacked()
         );
         super.render(context, mouseX, mouseY, delta);
     }
